@@ -6,6 +6,7 @@ import Alert from '../../components/ui/Alert'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import { getApiErrorMessage } from '../../utils/apiErrors'
+import { withNativeValues } from '../../utils/formSubmit'
 
 export default function VerifyEmailPage() {
   const [params] = useSearchParams()
@@ -14,6 +15,7 @@ export default function VerifyEmailPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: { token: params.get('token') || '' },
@@ -42,7 +44,7 @@ export default function VerifyEmailPage() {
           {done && <Alert variant="success">Tu correo está verificado. Ya puedes iniciar sesión.</Alert>}
           {formError && <Alert variant="error">{formError}</Alert>}
           {!done && (
-            <form onSubmit={handleSubmit(onSubmit)} style={{ textAlign: 'left' }}>
+            <form onSubmit={withNativeValues(handleSubmit, onSubmit, setValue)} style={{ textAlign: 'left' }}>
               <Input
                 id="token"
                 label="Token de verificación"

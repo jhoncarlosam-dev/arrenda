@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { getUserById } from '../../api/usersApi'
+import { withNativeValues } from '../../utils/formSubmit'
 import Button from '../ui/Button'
 import Input from '../ui/Input'
 import Select from '../ui/Select'
@@ -24,6 +25,7 @@ export default function ContractForm({ defaultValues, submitting, onSubmit, subm
     register,
     handleSubmit,
     setError,
+    setValue,
     watch,
     formState: { errors },
   } = useForm({
@@ -82,7 +84,7 @@ export default function ContractForm({ defaultValues, submitting, onSubmit, subm
   }
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form onSubmit={withNativeValues(handleSubmit, submit, setValue)}>
       <Input
         id="arrendatario_id"
         label="Arrendatario"

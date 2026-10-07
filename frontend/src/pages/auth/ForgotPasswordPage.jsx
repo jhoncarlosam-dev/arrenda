@@ -5,12 +5,14 @@ import { requestPasswordReset } from '../../api/usersApi'
 import Alert from '../../components/ui/Alert'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
+import { withNativeValues } from '../../utils/formSubmit'
 
 export default function ForgotPasswordPage() {
   const [sent, setSent] = useState(false)
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm()
 
@@ -37,7 +39,7 @@ export default function ForgotPasswordPage() {
               Si ese correo está registrado, recibirás un enlace en breve.
             </Alert>
           )}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={withNativeValues(handleSubmit, onSubmit, setValue)}>
             <Input
               id="email"
               type="email"

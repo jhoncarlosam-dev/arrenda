@@ -7,6 +7,7 @@ import Alert from '../../components/ui/Alert'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import { getApiErrorMessage } from '../../utils/apiErrors'
+import { withNativeValues } from '../../utils/formSubmit'
 
 export default function LoginPage() {
   const { login, isAuthenticated, loading } = useAuth()
@@ -16,8 +17,9 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
-  } = useForm()
+  } = useForm({ defaultValues: { email: '', password: '', remember: false } })
 
   if (!loading && isAuthenticated) {
     return <Navigate to={location.state?.from || '/panel'} replace />
@@ -49,7 +51,7 @@ export default function LoginPage() {
       <h2>Iniciar sesión</h2>
       <p className="subtitle">Ingresa con tu correo y contraseña</p>
       {formError && <Alert variant="error">{formError}</Alert>}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={withNativeValues(handleSubmit, onSubmit, setValue)}>
         <Input
           id="email"
           type="email"

@@ -7,6 +7,7 @@ import Alert from '../../components/ui/Alert'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import { getApiErrorMessage } from '../../utils/apiErrors'
+import { withNativeValues } from '../../utils/formSubmit'
 
 export default function ResetPasswordPage() {
   const [params] = useSearchParams()
@@ -15,6 +16,7 @@ export default function ResetPasswordPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -42,7 +44,7 @@ export default function ResetPasswordPage() {
           <h2>Nueva contraseña</h2>
           <p className="subtitle">Ingresa tu nueva contraseña</p>
           {formError && <Alert variant="error">{formError}</Alert>}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={withNativeValues(handleSubmit, onSubmit, setValue)}>
             <Input
               id="token"
               label="Token"

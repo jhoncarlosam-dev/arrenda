@@ -9,6 +9,7 @@ import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import Select from '../../components/ui/Select'
 import { getApiErrorMessage } from '../../utils/apiErrors'
+import { withNativeValues } from '../../utils/formSubmit'
 import { ROLES } from '../../utils/roles'
 
 export default function RegisterPage() {
@@ -17,6 +18,7 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({ defaultValues: { role: ROLES.ARRENDADOR } })
 
@@ -48,7 +50,7 @@ export default function RegisterPage() {
       <h2>Crear cuenta</h2>
       <p className="subtitle">Completa tus datos para registrarte</p>
       {formError && <Alert variant="error">{formError}</Alert>}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={withNativeValues(handleSubmit, onSubmit, setValue)}>
         <Input
           id="nombre"
           label="Nombre completo"

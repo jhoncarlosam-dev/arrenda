@@ -9,6 +9,7 @@ import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import { getApiErrorMessage } from '../../utils/apiErrors'
+import { withNativeValues } from '../../utils/formSubmit'
 import { formatDateLong } from '../../utils/formatters'
 
 export default function ProfilePage() {
@@ -106,7 +107,7 @@ export default function ProfilePage() {
               <h3>Información de la cuenta</h3>
             </div>
             <div className="card-body">
-              <form onSubmit={profileForm.handleSubmit(onSaveProfile)}>
+              <form onSubmit={withNativeValues(profileForm.handleSubmit, onSaveProfile, profileForm.setValue)}>
                 <Input
                   id="nombre"
                   label="Nombre completo"
@@ -148,7 +149,7 @@ export default function ProfilePage() {
               <h3>Cambiar contraseña</h3>
             </div>
             <div className="card-body">
-              <form onSubmit={passwordForm.handleSubmit(onChangePassword)}>
+              <form onSubmit={withNativeValues(passwordForm.handleSubmit, onChangePassword, passwordForm.setValue)}>
                 <Input
                   id="current"
                   type="password"
