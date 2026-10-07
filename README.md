@@ -2,14 +2,18 @@
 
 Sistema completo para la gestión de contratos de arrendamiento. Incluye un **backend REST API** construido con FastAPI + MySQL y un **frontend web** construido con React 18 + Vite. Soporta dos roles de usuario (arrendador y arrendatario) con autenticación JWT, gestión de cuentas y exportación de recibos en PDF/PNG.
 
+El frontend implementado vive en [`frontend/`](frontend/README.md). Arranque local: `cd frontend && cp .env.example .env && npm install && npm run dev` (http://localhost:5173), con `VITE_API_BASE_URL=http://localhost:8000/api/v1`.
+
 ---
 
 ## Estructura del Monorepo
 
 ```
-arrenda-v2/
-├── arrenda-backend/   # API REST — FastAPI + SQLAlchemy + MySQL
-└── arrenda-frontend/  # Aplicación web — React 18 + Vite + TailwindCSS
+arrenda/
+├── app/               # API REST — FastAPI + SQLAlchemy + MySQL (este repo)
+├── frontend/          # Aplicación web — React 18 + Vite + TailwindCSS
+├── migrations/
+└── tests/
 ```
 
 ---
