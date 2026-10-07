@@ -22,11 +22,13 @@ npm install
 npm run dev
 ```
 
-La app queda en [http://localhost:5173](http://localhost:5173).
+La app queda en [http://localhost:5173](http://localhost:5173). En desarrollo, Vite también puede hacer proxy de `/api` hacia `http://127.0.0.1:8000` (útil si CORS o el host difieren).
 
 ```env
 VITE_API_BASE_URL=http://localhost:8000/api/v1
 ```
+
+Para usar el proxy: `VITE_API_BASE_URL=/api/v1`.
 
 Las variables `VITE_*` se embeben en el build; no pongas secretos aquí.
 
