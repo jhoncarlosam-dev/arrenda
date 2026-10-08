@@ -1,5 +1,7 @@
 # Arrenda Web
 
+> **Repo canónico:** [jhoncarlosam-dev/arrenda-web](https://github.com/jhoncarlosam-dev/arrenda-web) (raíz del repo, no anidado). Esta carpeta `frontend/` en [arrenda](https://github.com/jhoncarlosam-dev/arrenda) es la copia de implementación original.
+
 Frontend React de **Arrenda**, sistema de gestión de contratos de arrendamiento. Interfaz en español para roles `ARRENDADOR` y `ARRENDATARIO`.
 
 Habla con la API FastAPI (`jhoncarlosam-dev/arrenda`) vía JWT Bearer.
