@@ -1,8 +1,12 @@
 # Environment variables — never commit secrets
 .env
-.env.example
 .env.local
 .env.*.local
+frontend/.env
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
 
 # Python
 __pycache__/
